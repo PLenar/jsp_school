@@ -1,8 +1,9 @@
 package pl.coderslab.controller;
 
-import pl.coderslab.codingschool.dao.GroupDao;
+
+import pl.coderslab.dao.SolutionDao;
+import pl.coderslab.dao.UserDao;
 import pl.coderslab.database.DbUtil;
-import pl.coderslab.model.Group;
 import pl.coderslab.model.MainPageSolution;
 import pl.coderslab.model.User;
 
@@ -31,7 +32,7 @@ public class UserDetailsPage extends HttpServlet {
 
             request.setAttribute("user", user);
             request.setAttribute("mainPageSolutions",mainPageSolutions);
-            request.getServletContext().getRequestDispatcher("/view/userDetails.jsp").forward(request,response);
+            request.getServletContext().getRequestDispatcher("/jsp/userDetails.jsp").forward(request,response);
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,11 +1,10 @@
 package pl.coderslab.controller;
 
-import pl.coderslab.codingschool.dao.GroupDao;
-import pl.coderslab.codingschool.dao.UserDao;
+import pl.coderslab.dao.GroupDao;
+import pl.coderslab.dao.UserDao;
 import pl.coderslab.database.DbUtil;
-import pl.coderslab.model.Group;
-import pl.coderslab.model.MainPageSolution;
 import pl.coderslab.model.User;
+import pl.coderslab.model.UserGroup;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,14 +24,14 @@ public class UserPage extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Connection connection = DbUtil.getConn();
+            Connection connection = DbUtil.getConnection();
             int id = Integer.parseInt(request.getParameter("id"));
             List<User> users = UserDao.loadAllByGroupId(connection, id);
             UserGroup group = GroupDao.getGroupById(connection, id);
 
             request.setAttribute("group", group);
             request.setAttribute("users", users);
-            request.getServletContext().getRequestDispatcher("/view/users.jsp").forward(request,response);
+            request.getServletContext().getRequestDispatcher("/jsp/users.jsp").forward(request,response);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,8 +1,8 @@
 package pl.coderslab.controller;
 
-import pl.coderslab.codingschool.dao.GroupDao;
+
+import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.database.DbUtil;
-import pl.coderslab.model.Group;
 import pl.coderslab.model.MainPageSolution;
 
 import javax.servlet.ServletException;
@@ -25,7 +25,7 @@ public class HomePage extends HttpServlet {
 
 
             request.setAttribute("solutions", solutions);
-            getServletContext().getRequestDispatcher("/view/index.jsp")
+            getServletContext().getRequestDispatcher("/jsp/index.jsp")
                     .forward(request, response);
 
         }catch (SQLException e){

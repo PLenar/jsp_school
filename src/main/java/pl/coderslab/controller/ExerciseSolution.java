@@ -1,8 +1,9 @@
 package pl.coderslab.controller;
 
-import pl.coderslab.codingschool.dao.GroupDao;
+import pl.coderslab.dao.GroupDao;
+import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.database.DbUtil;
-import pl.coderslab.model.Group;
+import pl.coderslab.model.UserGroup;
 import pl.coderslab.model.Solution;
 
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/excerciseSolution")
-public class ExcerciseSolution extends HttpServlet {
+public class ExerciseSolution extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -28,7 +29,7 @@ public class ExcerciseSolution extends HttpServlet {
             Solution solution = SolutionDao.getSolutionById(conn, id);
 
             request.setAttribute("solution",solution);
-            getServletContext().getRequestDispatcher("/view/solutionDetails.jsp")
+            getServletContext().getRequestDispatcher("/jsp/solutionDetails.jsp")
                     .forward(request, response);
 
         } catch (SQLException e) {

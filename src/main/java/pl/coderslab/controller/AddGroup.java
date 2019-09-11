@@ -1,9 +1,9 @@
 package pl.coderslab.controller;
 
 
-import pl.coderslab.codingschool.dao.GroupDao;
+import pl.coderslab.dao.GroupDao;
 import pl.coderslab.database.DbUtil;
-import pl.coderslab.model.Group;
+import pl.coderslab.model.UserGroup;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +22,7 @@ public class AddGroup extends HttpServlet {
         if(groupName != null){
             try {
                 Connection connection = DbUtil.getConnection();
-                Group group = new Group(groupName);
+                UserGroup group = new UserGroup(groupName);
                 GroupDao.saveToDB(connection, group);
 
                 response.getWriter().println("<h3>Dodano grupę</h3>");
@@ -33,6 +33,6 @@ public class AddGroup extends HttpServlet {
         }
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/view/addGroup.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/jsp/addGroup.jsp").forward(request, response);
     }
 }
